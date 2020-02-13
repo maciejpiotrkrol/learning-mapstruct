@@ -19,7 +19,6 @@ class CarMapperTest {
   public static final String TEST_STREET = "TestStreet";
   public static final String TEST_SURNAME = "TestSurname";
   public static final String TEST_NAME = "TestName";
-  public static final String AGE_STRING = "18";
   public static final int AGE = 18;
   public static final int BUILDING_NUMBER = 41;
 
