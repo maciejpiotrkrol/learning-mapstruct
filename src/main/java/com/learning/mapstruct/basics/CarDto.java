@@ -9,4 +9,5 @@ public class CarDto {
   private String name;
   private int seatCount;
   private String color;
+  private CustomerDto user;
 }
