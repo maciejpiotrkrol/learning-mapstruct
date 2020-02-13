@@ -11,10 +11,13 @@ class CustomerMapperTest {
 
   public static final String TEST_CITY = "TestCity";
   public static final String TEST_STREET = "TestStreet";
+  public static final String UPDATED_CITY = "UpdatedCity";
+  public static final String UPDATED_STREET = "UpdatedStreet";
   public static final String TEST_SURNAME = "TestSurname";
   public static final String TEST_NAME = "TestName";
   public static final int AGE = 18;
   public static final int BUILDING_NUMBER = 41;
+  public static final int UPDATED_BUILDING_NUMBER = 58;
 
   @Autowired
   private CustomerMapper customerMapper;
@@ -41,6 +44,22 @@ class CustomerMapperTest {
     assertEquals(TEST_CITY, customer.getAddress().getCity());
     assertEquals(TEST_STREET, customer.getAddress().getStreet());
     assertEquals(BUILDING_NUMBER, customer.getAddress().getBuildingNumber());
+    assertEquals(TEST_NAME, customer.getName());
+    assertEquals(TEST_SURNAME, customer.getSurname());
+  }
+
+  @Test
+  void updateCustomerFromDto() {
+    CustomerDto customerDto = CustomerDto.builder().age(AGE+1).address(UPDATED_CITY + " " + UPDATED_STREET + " " + UPDATED_BUILDING_NUMBER).build();
+    Address address = Address.builder().buildingNumber(BUILDING_NUMBER).city(TEST_CITY).street(TEST_STREET).build();
+    Customer customer = Customer.builder().age(AGE).name(TEST_NAME).surname(TEST_SURNAME).address(address).build();
+
+    customer = customerMapper.updateCustomerFromDto(customerDto, customer);
+
+    assertEquals(AGE+1, customer.getAge());
+    assertEquals(UPDATED_CITY, customer.getAddress().getCity());
+    assertEquals(UPDATED_STREET, customer.getAddress().getStreet());
+    assertEquals(UPDATED_BUILDING_NUMBER, customer.getAddress().getBuildingNumber());
     assertEquals(TEST_NAME, customer.getName());
     assertEquals(TEST_SURNAME, customer.getSurname());
   }

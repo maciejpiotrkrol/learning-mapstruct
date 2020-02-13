@@ -2,6 +2,7 @@ package com.learning.mapstruct.basics;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface CustomerMapper {
@@ -12,6 +13,10 @@ public interface CustomerMapper {
   @Mapping(target = "name", expression = "java(customerDto.getName().split(\" \")[0])")
   @Mapping(target = "surname", expression = "java(customerDto.getName().split(\" \")[1])")
   Customer customerDtoToCustomer(CustomerDto customerDto);
+
+  @Mapping(target = "name", ignore = true)
+  @Mapping(target = "surname", ignore = true)
+  Customer updateCustomerFromDto(CustomerDto customerDto, @MappingTarget Customer customer);
 
   default String addressToString(Address address) {
     return address.getCity() + " " + address.getStreet() + " " + address.getBuildingNumber();
