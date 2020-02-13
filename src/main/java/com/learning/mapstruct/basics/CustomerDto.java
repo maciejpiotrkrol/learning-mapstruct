@@ -7,7 +7,6 @@ import lombok.Data;
 @Builder
 public class CustomerDto {
   private String name;
-  private int age;
+  private String age;
   private String address;
-
 }

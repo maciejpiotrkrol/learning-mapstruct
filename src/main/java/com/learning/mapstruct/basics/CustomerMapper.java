@@ -8,10 +8,12 @@ import org.mapstruct.MappingTarget;
 public interface CustomerMapper {
 
   @Mapping(target = "name", expression = "java(customer.getName() + \" \" + customer.getSurname())")
+  @Mapping(target = "age", source = "age", numberFormat = "#")
   CustomerDto customerToCustomerDto(Customer customer);
 
   @Mapping(target = "name", expression = "java(customerDto.getName().split(\" \")[0])")
   @Mapping(target = "surname", expression = "java(customerDto.getName().split(\" \")[1])")
+  @Mapping(target = "age", source = "age", numberFormat = "#")
   Customer customerDtoToCustomer(CustomerDto customerDto);
 
   @Mapping(target = "name", ignore = true)
