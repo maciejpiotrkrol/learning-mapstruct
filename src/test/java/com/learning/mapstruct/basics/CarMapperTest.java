@@ -17,6 +17,7 @@ class CarMapperTest {
   public static final String TEST_STREET = "TestStreet";
   public static final String TEST_SURNAME = "TestSurname";
   public static final String TEST_NAME = "TestName";
+  public static final String AGE_STRING = "18";
   public static final int AGE = 18;
   public static final int BUILDING_NUMBER = 41;
 
@@ -38,7 +39,7 @@ class CarMapperTest {
     assertEquals(RED, carDto.getColor());
     assertEquals(MERCEDES, carDto.getName());
     assertEquals(SEATS, carDto.getSeatCount());
-    assertEquals(AGE, carDto.getUser().getAge());
+    assertEquals(AGE_STRING, carDto.getUser().getAge());
     assertEquals(TEST_CITY + " " + TEST_STREET + " " + BUILDING_NUMBER, carDto.getUser().getAddress());
     assertEquals(TEST_NAME + " " + TEST_SURNAME, carDto.getUser().getName());
   }
