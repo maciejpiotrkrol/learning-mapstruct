@@ -30,4 +30,18 @@ class CustomerMapperTest {
     assertEquals(TEST_CITY + " " + TEST_STREET + " " + BUILDING_NUMBER, customerDto.getAddress());
     assertEquals(TEST_NAME + " " + TEST_SURNAME, customerDto.getName());
   }
+
+  @Test
+  void customerDtoToCustomer() {
+    CustomerDto customerDto = CustomerDto.builder().age(AGE).name(TEST_NAME + " " + TEST_SURNAME).address(TEST_CITY + " " + TEST_STREET + " " + BUILDING_NUMBER).build();
+
+    Customer customer = customerMapper.customerDtoToCustomer(customerDto);
+
+    assertEquals(AGE, customer.getAge());
+    assertEquals(TEST_CITY, customer.getAddress().getCity());
+    assertEquals(TEST_STREET, customer.getAddress().getStreet());
+    assertEquals(BUILDING_NUMBER, customer.getAddress().getBuildingNumber());
+    assertEquals(TEST_NAME, customer.getName());
+    assertEquals(TEST_SURNAME, customer.getSurname());
+  }
 }
